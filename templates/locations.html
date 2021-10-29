@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="location_id">ID</th>
+        <th scope="location_name">Location Name</th>
+        <th scope="capacity">Capacity</th>
+        <th scope="street_address">Street Address</th>
+        <th scope="street_name">Street Name</th>
+        <th scope="city">City</th>
+        <th scope="state">State</th>
+        <th scope="phone">Phone</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>ASPCA</td>
+        <td>100</td>
+        <td>123</td>
+        <td>NA</td>
+        <td>Los Angeles</td>
+        <td>CA</td>
+        <td>123-455-5666</td>
+        <td><button type="button" class="btn btn-primary">Edit</button></td>
+        <td><button type="button" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+    <h2>Add a Location</h2>
+        <form>
+            <div class="form-row">
+              <div class="col add-form">
+                <input type="text" class="form-control" placeholder="Location Name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Capacity">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Street Number">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Street Name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="City">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="State">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Phone">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+</div>
+{% endblock %}

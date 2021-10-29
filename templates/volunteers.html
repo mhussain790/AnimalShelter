@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="volunteer_id">ID</th>
+        <th scope="first_name">First Name</th>
+        <th scope="last_name">Last Name</th>
+        <th scope="street_address">Street Address</th>
+        <th scope="street_name">Street Name</th>
+        <th scope="city">City</th>
+        <th scope="state">State</th>
+        <th scope="phone">Phone</th>
+        <th scope="email">Email</th>
+        <th scope="experience">Experience Level</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Freddy</td>
+        <td>K</td>
+        <td>123</td>
+        <td>Elm St</td>
+        <td>Los Angeles</td>
+        <td>CA</td>
+        <td>123-456-7890</td>
+        <td>fkrueger@nightmare.com</td>
+        <td>3</td>
+        <td><button type="button" class="btn btn-primary">Edit</button></td>
+        <td><button type="button" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+    <h2>Add a Volunteer</h2>
+        <form>
+            <div class="form-row">
+              <div class="col add-form">
+                <input type="text" class="form-control" placeholder="First Name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Last Name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Street Address">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Street Name">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="City">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="State">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Phone">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Email">
+              </div>
+            </div>
+            
+            <select class="custom-select">
+                <option selected>Select an Experience Level</option>
+                <option value="1">Beginner</option>
+                <option value="2">Intermediate</option>
+                <option value="3">Advanced</option>
+              </select>
+
+              <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="mentor_id">ID</th>
+        <th scope="firs">Species</th>
+        <th scope="name">Name</th>
+        <th scope="volunteer_id">Foster</th>
+        <th scope="location_id">Location</th>
+        <th scope="arrival_date">Arrival Date</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>Lion</td>
+        <td>Simba</td>
+        <td>Test1</td>
+        <td>Location1</td>
+        <td>2021-01-01</td>
+        <td><button type="button" class="btn btn-primary">Edit</button></td>
+        <td><button type="button" class="btn btn-danger">Delete</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div>
+    <h2>Add a Mentor</h2>
+        <form>
+            <div class="form-row">
+                <div class="col add-form">
+                    <input type="text" class="form-control" placeholder="First Name">
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" placeholder="Last Name">
+                </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Phone">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Email">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Location">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+</div>
+{% endblock %}

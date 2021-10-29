@@ -1,0 +1,22 @@
+/* .content {
+  margin: auto;
+} */
+body {
+  display: block-block;
+}
+
+h1,
+h2,
+.title-text {
+  color: #317399;
+}
+
+span {
+  font-weight: 400;
+}
+
+.add-form {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
