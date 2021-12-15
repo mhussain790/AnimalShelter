@@ -6,51 +6,61 @@
     <thead>
       <tr>
         <th scope="mentor_id">ID</th>
-        <th scope="firs">Species</th>
-        <th scope="name">Name</th>
-        <th scope="volunteer_id">Foster</th>
-        <th scope="location_id">Location</th>
-        <th scope="arrival_date">Arrival Date</th>
+        <th scope="fname">First Name</th>
+        <th scope="lname">Last Name</th>
+        <th scope="phone">Phone</th>
+        <th scope="email">Email</th>
+        <th scope="location">Location</th>
         <th></th>
         <th></th>
       </tr>
     </thead>
     <tbody>
+      {% for item in output_data %}
       <tr>
-        <th scope="row">1</th>
-        <td>Lion</td>
-        <td>Simba</td>
-        <td>Test1</td>
-        <td>Location1</td>
-        <td>2021-01-01</td>
-        <td><button type="button" class="btn btn-primary">Edit</button></td>
-        <td><button type="button" class="btn btn-danger">Delete</button></td>
+        <td>{{item.mentor_id}}</td>
+        <td>{{item.first_name}}</td>
+        <td>{{item.last_name}}</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.location_id}}</td>
+        <form method="POST" action="{{ url_for('mentor_edit', mentor_id=item.mentor_id) }}"
+        id="edit_mentor">
+          <td><button type="submit" name="edit_id" id="edit_id" method="POST" value="{{item.volunteer_id}}" class="btn btn-primary">Edit</button></td>
+        </form>
+        <form method="POST"
+        action="{{ url_for('delete_mentor', mentor_id=item.mentor_id) }}">
+          <td><button type="submit" class="btn btn-danger">Delete</button></td>
+        </form>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
 
-<div>
+<div class="add-table">
     <h2>Add a Mentor</h2>
-        <form>
+        <form class="addTo-Form" id="add_mentor" name="add_mentor" action="/mentors" method="POST">
             <div class="form-row">
-                <div class="col add-form">
-                    <input type="text" class="form-control" placeholder="First Name">
-                </div>
-                <div class="col">
-                    <input type="text" class="form-control" placeholder="Last Name">
-                </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="Phone">
+              <div class="col add-form">
+                <input type="text" class="form-control" placeholder="First Name" name="first_name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" placeholder="Last Name" name="last_name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Location">
+                <input type="text" class="form-control" placeholder="Phone" name="phone">
               </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Email" name="email">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="Location" name="location">
+              </div>
+            
+            <input type="hidden" name="add_mentor" />
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
           </form>
 </div>
 {% endblock %}

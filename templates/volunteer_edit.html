@@ -1,0 +1,95 @@
+{% extends 'base.html' %} {% block content %}
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="volunteer_id">ID</th>
+        <th scope="first_name">First Name</th>
+        <th scope="last_name">Last Name</th>
+        <th scope="street_address">Street Address</th>
+        <th scope="street_name">Street Name</th>
+        <th scope="city">City</th>
+        <th scope="state">State</th>
+        <th scope="phone">Phone</th>
+        <th scope="email">Email</th>
+        <th scope="experience">Experience Level</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in output_data %}
+      <tr>
+        <!-- <th scope="row">1</th> -->
+
+        <form
+          id="edit"
+          name="edit"
+          action="{{ url_for('volunteer_edit', volunteer_id=item.volunteer_id) }}"
+          method="POST"
+        >
+          <td>{{item.volunteer_id}}</td>
+          <td>
+            <input type="text" value="{{item.first_name}}" name="before_fname" />
+          </td>
+          <td><input type="text" value="{{item.last_name}}" name="before_lname" /></td>
+          <td>
+            <input
+              type="text"
+              value="{{item.street_address}}"
+              name="before_saddress"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="{{item.street_name}}"
+              name="before_sname"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="{{item.city}}"
+              name="before_city"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="{{item.state}}"
+              name="before_state"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="{{item.phone}}"
+              name="before_phone"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="{{item.email}}"
+              name="before_email"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="{{item.exp_level}}"
+              name="before_experience"
+            />
+          </td>
+          <td>
+            <input type="hidden" name="edit" />
+            <button type="submit" class="btn btn-primary">Update</button>
+          </td>
+        </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %} {% block content %}
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="animal_id">Animal ID</th>
+        <th scope="species">Species</th>
+        <th scope="name">Name</th>
+        <th scope="volunteer_id">Foster</th>
+        <th scope="location_id">Location</th>
+        <th scope="arrival_date">Arrival Date</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in output_data %}
+      <tr>
+        <!-- <th scope="row">1</th> -->
+
+        <form
+          id="edit"
+          name="edit"
+          action="{{ url_for('animal_edit', animal_id=item.animal_id) }}"
+          method="POST"
+        >
+          <td>{{item.animal_id}}</td>
+          <td>
+            <input type="text" value="{{item.species}}" name="beforespecies" />
+          </td>
+          <td><input type="text" value="{{item.name}}" name="beforename" /></td>
+          <td>
+            <input
+              type="text"
+              value="{{item.volunteer_id}}"
+              name="beforefoster"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="{{item.location_id}}"
+              name="beforelocation"
+            />
+          </td>
+          <td>
+            <input
+              type="text"
+              value="{{item.arrival_date}}"
+              name="beforedate"
+            />
+          </td>
+          <td>
+            <input type="hidden" name="edit" />
+            <button type="submit" class="btn btn-primary">Update</button></td>
+        </form>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

@@ -2,8 +2,13 @@
 
 {% block content %}
 <div>
+  
 <table class="table">
+  <div class="form-group pull-right">
+    <input type="text" class="search form-control" placeholder="Search">
+  </div>
     <thead>
+      
       <tr>
         <th scope="volunteer_id">ID</th>
         <th scope="first_name">First Name</th>
@@ -20,62 +25,73 @@
       </tr>
     </thead>
     <tbody>
+      {% for item in output_data %}
       <tr>
-        <th scope="row">1</th>
-        <td>Freddy</td>
-        <td>K</td>
-        <td>123</td>
-        <td>Elm St</td>
-        <td>Los Angeles</td>
-        <td>CA</td>
-        <td>123-456-7890</td>
-        <td>fkrueger@nightmare.com</td>
-        <td>3</td>
-        <td><button type="button" class="btn btn-primary">Edit</button></td>
-        <td><button type="button" class="btn btn-danger">Delete</button></td>
+        <td>{{item.volunteer_id}}</td>
+        <td>{{item.first_name}}</td>
+        <td>{{item.last_name}}</td>
+        <td>{{item.street_address}}</td>
+        <td>{{item.street_name}}</td>
+        <td>{{item.city}}</td>
+        <td>{{item.state}}</td>
+        <td>{{item.phone}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.exp_level}}</td>
+
+        <form method="POST" action="{{ url_for('volunteer_edit', volunteer_id=item.volunteer_id) }}"
+        id="edit_volunteer">
+          <td><button type="submit" name="edit_id" id="edit_id" method="POST" value="{{item.volunteer_id}}" class="btn btn-primary">Edit</button></td>
+        </form>
+        <form method="POST"
+        action="{{ url_for('delete_volunteer', volunteer_id=item.volunteer_id) }}">
+          <td><button type="submit" class="btn btn-danger">Delete</button></td>
+        </form>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
 
-<div>
+<div class="add-table">
     <h2>Add a Volunteer</h2>
-        <form>
+        <form class="addTo-Form" id="add_volunteer" name="add_volunteer" action="/volunteers" method="POST">
             <div class="form-row">
               <div class="col add-form">
-                <input type="text" class="form-control" placeholder="First Name">
+                <input type="text" class="form-control" placeholder="First Name" name="first_name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Last Name">
+                <input type="text" class="form-control" placeholder="Last Name" name="last_name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Street Address">
+                <input type="text" class="form-control" placeholder="Street Address" name="street_address">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Street Name">
+                <input type="text" class="form-control" placeholder="Street Name" name="street_name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="City">
+                <input type="text" class="form-control" placeholder="City" name="city">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="State">
+                <input type="text" class="form-control" placeholder="State" name="state">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Phone">
+                <input type="text" class="form-control" placeholder="Phone" name="phone">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" placeholder="Email" name="email">
               </div>
-            </div>
             
-            <select class="custom-select">
+            
+            <select class="custom-select" name="experience_select">
                 <option selected>Select an Experience Level</option>
                 <option value="1">Beginner</option>
                 <option value="2">Intermediate</option>
                 <option value="3">Advanced</option>
-              </select>
-
-              <button type="submit" class="btn btn-primary">Sign in</button>
+            </select>
+            <input type="hidden" name="add_volunteer" />
+            <button type="submit" class="btn btn-primary">Add</button>
+              
+            </div>
         </form>
 </div>
 {% endblock %}

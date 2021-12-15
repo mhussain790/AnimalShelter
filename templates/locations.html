@@ -18,49 +18,62 @@
       </tr>
     </thead>
     <tbody>
+      {% for item in output_data %}
       <tr>
-        <th scope="row">1</th>
-        <td>ASPCA</td>
-        <td>100</td>
-        <td>123</td>
-        <td>NA</td>
-        <td>Los Angeles</td>
-        <td>CA</td>
-        <td>123-455-5666</td>
-        <td><button type="button" class="btn btn-primary">Edit</button></td>
-        <td><button type="button" class="btn btn-danger">Delete</button></td>
+        <td>{{item.location_id}}</td>
+        <td>{{item.location_name}}</td>
+        <td>{{item.capacity}}</td>
+        <td>{{item.street_address}}</td>
+        <td>{{item.street_name}}</td>
+        <td>{{item.city}}</td>
+        <td>{{item.state}}</td>
+        <td>{{item.phone}}</td>
+
+        <form method="POST" action="{{ url_for('location_edit', location_id=item.location_id) }}"
+        id="edit_location">
+          <td><button type="submit" name="edit_id" id="edit_id" method="POST" value="{{item.location_id}}" class="btn btn-primary">Edit</button></td>
+        </form>
+        
+        <form method="POST"
+        action="{{ url_for('delete_location', location_id=item.location_id) }}">
+          <td><button type="submit" class="btn btn-danger">Delete</button></td>
+        </form>
+
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
 
-<div>
+<div class="add-table">
     <h2>Add a Location</h2>
-        <form>
+        <form class="addTo-Form" id="add_location" name="add_location" action="/locations" method="POST">
             <div class="form-row">
               <div class="col add-form">
-                <input type="text" class="form-control" placeholder="Location Name">
+                <input type="text" class="form-control" placeholder="Location Name" name="location_name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Capacity">
+                <input type="text" class="form-control" placeholder="Capacity" name="capacity">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Street Number">
+                <input type="text" class="form-control" placeholder="Street Number" name="street_address">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Street Name">
+                <input type="text" class="form-control" placeholder="Street Name" name="street_name">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="City">
+                <input type="text" class="form-control" placeholder="City" name="city">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="State">
+                <input type="text" class="form-control" placeholder="State" name="state">
               </div>
               <div class="col">
-                <input type="text" class="form-control" placeholder="Phone">
+                <input type="text" class="form-control" placeholder="Phone" name="phone">
               </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            
+            <input type="hidden" name="add_location" />
+            <button type="submit" class="btn btn-primary">Add</button>
+          </div>
           </form>
 </div>
 {% endblock %}

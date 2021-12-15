@@ -1,8 +1,6 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div>
-<table class="table">
+  <table class="table">
     <thead>
       <tr>
         <th scope="animal_id">Animal ID</th>
@@ -16,41 +14,108 @@
       </tr>
     </thead>
     <tbody>
+      {% for item in output_data %}
       <tr>
-        <th scope="row">1</th>
-        <td>Lion</td>
-        <td>Simba</td>
-        <td>Test1</td>
-        <td>Location1</td>
-        <td>2021-01-01</td>
-        <td><button type="button" class="btn btn-primary">Edit</button></td>
-        <td><button type="button" class="btn btn-danger">Delete</button></td>
+        <!-- <th scope="row">1</th> -->
+        <td>{{item.animal_id}}</td>
+        <td>{{item.species}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.volunteer_id}}</td>
+        <td>{{item.location_id}}</td>
+        <td>{{item.arrival_date}}</td>
+        <form
+          method="POST"
+          action="{{ url_for('animal_edit', animal_id=item.animal_id) }}"
+          id="edit_animal"
+        >
+          <td>
+            <button
+              type="submit"
+              name="edit_id"
+              id="edit_id"
+              method="POST"
+              class="btn btn-primary"
+              value="{{item.animal_id}}"
+            >
+              Edit
+            </button>
+          </td>
+        </form>
+        <td>
+          <form
+            method="POST"
+            action="{{ url_for('delete_animal', animal_id=item.animal_id) }}"
+          >
+            <button
+              type="submit"
+              name="delete"
+              value="Delete"
+              class="btn btn-danger"
+            >
+              Delete
+            </button>
+          </form>
+        </td>
       </tr>
+      {% endfor %}
     </tbody>
   </table>
 </div>
 
-<div>
-    <h2>Add an Animal</h2>
-        <form>
-            <div class="form-row">
-              <div class="col add-form">
-                <input type="text" class="form-control" placeholder="Species">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="Name">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="Foster">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="Location">
-              </div>
-              <div class="col">
-                <input type="text" class="form-control" placeholder="Arrival Date">
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
+<div class="add-table">
+  <h2>Add an Animal</h2>
+  <form
+    class="addTo-Form"
+    id="add_animal"
+    name="add_animal"
+    action="/animals"
+    method="POST"
+  >
+    <div class="form-row">
+      <div class="col add-form">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Species"
+          name="species"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Name"
+          name="name"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Foster"
+          name="foster"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Location"
+          name="location"
+        />
+      </div>
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Arrival Date"
+          name="arrival_date"
+        />
+      </div>
+    </div>
+    <input type="hidden" name="add_animal" />
+    <button type="submit" class="btn btn-primary">Add</button>
+  </form>
 </div>
+
 {% endblock %}
